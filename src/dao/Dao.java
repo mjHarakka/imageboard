@@ -30,9 +30,9 @@ public class Dao {
 	     return con;
 	}
 
-	public List<User> listaaKaikki(){
-		List<User> users = new ArrayList<User>();
-		sql = "SELECT * FROM users";       
+	public ArrayList<User> listaaKaikki(){
+		ArrayList<User> users = new ArrayList<User>();
+		sql = "SELECT * FROM user;";       
 
 		try {
 			con = yhdista();

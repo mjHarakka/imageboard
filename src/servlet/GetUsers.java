@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -18,19 +19,18 @@ public class GetUsers extends HttpServlet {
           
     public GetUsers() {
         super();
-        System.out.println("GetUsers.GetUserst()");
+        System.out.println("GetUsers.GetUsers()");
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("GetUsers.doGet()");
-		List<User> users;
+		ArrayList<User> users;
 		Dao dao = new Dao();
 		users = dao.listaaKaikki();
 		request.setAttribute("users", users);		
-		String jsp = "/listaa.jsp"; 
+		String jsp = "/index.jsp"; 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
-
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
