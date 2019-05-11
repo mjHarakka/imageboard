@@ -1,11 +1,10 @@
 <%@page import="bean.LoginDao"%>  
-<%@page import="bean.LoginBean"%>  
 <jsp:useBean id="obj" class="bean.LoginBean"/>  
   
 <jsp:setProperty property="*" name="obj"/>  
   
 <%  
-boolean status=LoginDao.validate(obj);  
+boolean status = LoginDao.validate(obj);  
 	if (status){  
 		out.println("Login succesful!");
 		session.setAttribute("session","TRUE");  
