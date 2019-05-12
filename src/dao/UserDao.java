@@ -18,11 +18,8 @@ public static int save(User u){
         Connection con = getConnection();  
         PreparedStatement ps  =  con.prepareStatement(  
         "insert into user(name,password,email,sex,country) values(?,?,?,?,?)");
-        ps.setString(1,u.getName());
+        ps.setString(1,u.getUsername());
         ps.setString(2,u.getPassword());  
-        ps.setString(3,u.getEmail());  
-        ps.setString(4,u.getSex());  
-        ps.setString(5,u.getCountry());  
         status = ps.executeUpdate();  
     } catch(Exception e){System.out.println(e);}   
     return status;  
@@ -33,11 +30,8 @@ public static int update(User u){
         Connection con = getConnection();  
         PreparedStatement ps = con.prepareStatement(  
 "update user set name = ?,password = ?,email = ?,sex = ?,country = ? where id = ?");  
-        ps.setString(1,u.getName());  
+        ps.setString(1,u.getUsername());
         ps.setString(2,u.getPassword());  
-        ps.setString(3,u.getEmail());  
-        ps.setString(4,u.getSex());  
-        ps.setString(5,u.getCountry());  
         ps.setInt(6,u.getId());  
         status = ps.executeUpdate();  
     } catch(Exception e){System.out.println(e);}   
@@ -63,12 +57,8 @@ public static List<User> getAllRecords(){
         ResultSet rs = ps.executeQuery();  
         while(rs.next()){  
             User u = new User();  
-            u.setId(rs.getInt("id"));  
-            u.setName(rs.getString("name"));  
-            u.setPassword(rs.getString("password"));  
-            u.setEmail(rs.getString("email"));  
-            u.setSex(rs.getString("sex"));  
-            u.setCountry(rs.getString("country"));  
+            ps.setString(1,u.getUsername());
+            ps.setString(2,u.getPassword());  
             list.add(u);  
         }   
     } catch(Exception e){System.out.println(e);}   
@@ -84,11 +74,8 @@ public static User getRecordById(int id){
         while(rs.next()){  
             u = new User();  
             u.setId(rs.getInt("id"));  
-            u.setName(rs.getString("name"));  
-            u.setPassword(rs.getString("password"));  
-            u.setEmail(rs.getString("email"));  
-            u.setSex(rs.getString("sex"));  
-            u.setCountry(rs.getString("country"));  
+            ps.setString(1,u.getUsername());
+            ps.setString(2,u.getPassword());  
         }   
     } catch(Exception e){System.out.println(e);}   
     return u;  
