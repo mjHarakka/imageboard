@@ -46,7 +46,7 @@ public class FileUploadDBServlet extends HttpServlet {
             inputStream = filePart.getInputStream();
         }
          
-        Connection con = null; // conection to the database
+        Connection con = null; // connection to the database
         String message = null;  // message will be sent back to client
          
         try {
