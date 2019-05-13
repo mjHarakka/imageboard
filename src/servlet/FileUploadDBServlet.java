@@ -1,15 +1,10 @@
 package servlet;
 
-import static bean.Provider.DRIVER;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -25,7 +20,7 @@ import bean.ConnectionProvider;
 @WebServlet("/uploadServlet")
 @MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
 public class FileUploadDBServlet extends HttpServlet {
-     
+	
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         // gets values of text fields
@@ -73,14 +68,14 @@ public class FileUploadDBServlet extends HttpServlet {
             message = "ERROR: " + ex.getMessage();
             ex.printStackTrace();
         } finally {
-            if (con != null) {
-                // closes the database conection
+        	if (con != null) {
+                // closes the database connection
                 try {
                     con.close();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
-            }
+            }	
             //sets the message in request scope
             request.setAttribute("Message", message);
              

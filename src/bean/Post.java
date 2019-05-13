@@ -1,6 +1,6 @@
 package bean;
 
-import java.io.File;
+import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
 
@@ -11,13 +11,13 @@ public class Post {
 	private String content;
 	private List<Comment> comments;
 	private Date date;
-	private File file;
+	private Blob file;
 
 
-	public File getFile() {
+	public Blob getFile() {
 		return file;
 	}
-	public void setFile(File file) {
+	public void setFile(Blob file) {
 		this.file = file;
 	}
 	public Date getDate() {

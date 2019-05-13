@@ -13,6 +13,10 @@ import bean.Post;
 
 public class PostDao {
 
+	public static Connection getCon() {
+		return ConnectionProvider.getCon();
+	}
+	
 	public static boolean save(Post p) {
 		boolean status = false;
 		
@@ -36,10 +40,15 @@ public class PostDao {
 	
 	public static List<Post> getAllPosts() {
 		List<Post> list = new ArrayList<Post>();  
+	
+		Connection con = getCon();
 		
-	    try { 
-	        Connection con = ConnectionProvider.getCon();
-	        PreparedStatement ps = con.prepareStatement("select topic, content from post");  
+	    try {
+	    	if (con == null) {
+	    		con = ConnectionProvider.getCon();
+	    	}
+	    	
+	    	PreparedStatement ps = con.prepareStatement("select topic, content from post");  
 	        ResultSet rs = ps.executeQuery();
 
 	        while(rs.next()) {  
@@ -48,9 +57,10 @@ public class PostDao {
 	            p.setContent(rs.getString(2));
 	            list.add(p);  
 	        } 
+	        
 	    } catch(Exception e) {
 	    	System.out.println(e);
-	    }   
+	    }
 
 	    return list;  
 	}

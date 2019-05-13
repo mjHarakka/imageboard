@@ -16,7 +16,6 @@ public class ConnectionProvider {
 	}  
   
 	public static Connection getCon() {
-		return con;  
-	}  
-  
+		return con;
+	} 
 }  

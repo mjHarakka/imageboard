@@ -22,6 +22,9 @@ request.setAttribute("list", list);
 	<div class="content">
     	<div class="header">${item.getTopic()}</div>
  	</div>
+ 	<div class="content">
+    <img src="${pageContext.request.contextPath}/images/${imagename}">
+    </div>
     <div class="content">
     <p>${item.getContent()}</p>
     </div>
