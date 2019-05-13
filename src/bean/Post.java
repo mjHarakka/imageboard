@@ -13,6 +13,7 @@ public class Post {
 	private Date date;
 	private File file;
 
+
 	public File getFile() {
 		return file;
 	}

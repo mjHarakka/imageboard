@@ -9,7 +9,7 @@
 <h1>Posting platform</h1>  
   
 
-<jsp:include page="postform.html" />
+<jsp:include page="postform.jsp" />
 <jsp:include page="viewposts.jsp" />
 
 </body>  

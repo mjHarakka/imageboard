@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,11 +19,12 @@ public class PostDao {
 		try {
 			Connection con = ConnectionProvider.getCon();
 			PreparedStatement ps = con.prepareStatement(
-					"insert into post(topic,content, date) values(?,?,?)"
+					"insert into post(topic,content, date, image) values(?,?,?)"
 					);
 			ps.setString(1, p.getTopic());
 			ps.setString(2, p.getContent());
 			ps.setDate(3, new java.sql.Date(Calendar.getInstance().getTime().getTime())); 
+			ps.setBlob(4, (Blob) p.getFile());
 			ps.executeUpdate();
 			
 		} catch (Exception e) {
