@@ -20,9 +20,12 @@ public class CommentDao {
 	
 		Connection con = ConnectionProvider.getCon();
 		
+		
 	    try {
 	    	
-	    	PreparedStatement ps = con.prepareStatement("select content, postid from comment where postid = " + postId);  
+	    	
+	    	
+	    	PreparedStatement ps = con.prepareStatement("select content, postid from comment where postid = " + postId);
 	        ResultSet rs = ps.executeQuery();
 
 	        while(rs.next()) {  

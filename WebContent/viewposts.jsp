@@ -40,7 +40,7 @@ request.setAttribute("list", list);
     <div class="ui large transparent left icon input">
       
 
-		<form action="Post/20" method="post">  
+		<form action="Post/${item.getId()}" method="post">  
 			<input type="text" name="commentContent" placeholder="Add Comment...">
 			<button type="submit"class="ui icon button">
 		  		<i class="comment icon"></i>
@@ -54,15 +54,19 @@ request.setAttribute("list", list);
   </div>
 
 
+  
+
 <%
-int id = 22;
-List<Comment> comments = CommentDao.getAllComments(id);
+Comment comment = (Comment)pageContext.getAttribute("item");
+List<Comment> comments = CommentDao.getAllComments(comment.getId());
 request.setAttribute("comments", comments);  
 %>
 
+<div class="ui comments">
+<h3 class="ui dividing header">Comments</h3>
 <c:forEach items = "${comments}" var="comment">
-	<div class="ui comments">
-	  <h3 class="ui dividing header">Comments</h3>
+	
+	  
 	  <div class="comment">
 	    
 	    <div class="content">
@@ -71,15 +75,16 @@ request.setAttribute("comments", comments);
 	        <span class="date">Today at 5:42PM</span>
 	      </div>
 	      <div class="text">
-	        ${comment.getContent()} 
+	        <p>${comment.getContent()}</p> 
 	      </div>
 	      <div class="actions">
 	        <a class="reply">Reply</a>
 	      </div>
 	    </div>
 	  </div>
-	</div>
+	
 </c:forEach>
+</div>
   
 </div>
 

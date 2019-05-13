@@ -7,6 +7,6 @@
 <body>  
   
 <jsp:include page="postform.html"></jsp:include>  
-  
+
 </body>  
 </html>  
