@@ -23,7 +23,7 @@ request.setAttribute("list", list);
     	<div class="header">${item.getTopic()}</div>
  	</div>
  	<div class="content">
-    <img src="${pageContext.request.contextPath}/images/${imagename}">
+    <img src="${pageContext.request.contextPath}/images/${item.getId()}">
     </div>
     <div class="content">
     <p>${item.getContent()}</p>

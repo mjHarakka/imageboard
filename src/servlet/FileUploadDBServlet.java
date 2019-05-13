@@ -61,21 +61,15 @@ public class FileUploadDBServlet extends HttpServlet {
  
             // sends the ps to the database server
             int row = ps.executeUpdate();
+
             if (row > 0) {
                 message = "File uploaded and saved into database";
             }
+
         } catch (SQLException ex) {
             message = "ERROR: " + ex.getMessage();
             ex.printStackTrace();
         } finally {
-        	if (con != null) {
-                // closes the database connection
-                try {
-                    con.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }	
             //sets the message in request scope
             request.setAttribute("Message", message);
              

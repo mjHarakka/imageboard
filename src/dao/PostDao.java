@@ -48,13 +48,14 @@ public class PostDao {
 	    		con = ConnectionProvider.getCon();
 	    	}
 	    	
-	    	PreparedStatement ps = con.prepareStatement("select topic, content from post");  
+	    	PreparedStatement ps = con.prepareStatement("select id, topic, content from post");  
 	        ResultSet rs = ps.executeQuery();
 
 	        while(rs.next()) {  
 	            Post p = new Post(); 
-	            p.setTopic(rs.getString(1));
-	            p.setContent(rs.getString(2));
+	            p.setId(rs.getInt(1));
+	            p.setTopic(rs.getString(2));
+	            p.setContent(rs.getString(3));
 	            list.add(p);  
 	        } 
 	        

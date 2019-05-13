@@ -18,7 +18,7 @@ import bean.ConnectionProvider;
 @WebServlet("/images/*")
 public class ImageServlet extends HttpServlet {
 
-    // content = blob, name=varchar(255) UNIQUE.
+    // content = blob, name = varchar(255) UNIQUE.
     private static final String SQL_FIND = "SELECT image FROM post WHERE id = ?";
 
     /*
@@ -31,34 +31,25 @@ public class ImageServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String imageName = request.getPathInfo().substring(1); // Returns "foo.png".
+        String id = request.getPathInfo().substring(1);
 
         try {
         	Connection con = ConnectionProvider.getCon();
         	PreparedStatement statement = con.prepareStatement(SQL_FIND);
-            statement.setString(1, imageName);
+            statement.setString(1, id);
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    byte[] content = resultSet.getBytes("content");
-                    response.setContentType(getServletContext().getMimeType(imageName));
+                    byte[] content = resultSet.getBytes("image");
+                    response.setContentType(getServletContext().getMimeType(id));
                     response.setContentLength(content.length);
                     response.getOutputStream().write(content);
                 } else {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
                 }
             } catch (SQLException e) {
-            	
-            } finally {
-            	if (con != null) {
-                    // closes the database connection
-                    try {
-                        con.close();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-                }	
-            }
+            	System.out.println(e.getMessage());
+            } finally {}
         } catch (SQLException e) {
             throw new ServletException("Something failed at SQL/DB level.", e);
         }
