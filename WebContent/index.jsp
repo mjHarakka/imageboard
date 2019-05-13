@@ -1,3 +1,16 @@
-<a href="login.jsp">login</a>|  
-<a href="logout.jsp">logout</a>|  
-<a href="profile.jsp">profile</a>  
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
+<title>Posting platform</title>  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+</head>  
+<body>  
+<h1>Posting platform</h1>  
+  
+
+<jsp:include page="postform.html" />
+<jsp:include page="viewposts.jsp" />
+
+</body>  
+</html>  

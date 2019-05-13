@@ -1,12 +1,23 @@
-CREATE TABLE  USER   
-   (
-    NAME VARCHAR2(4000),   
-	EMAIL VARCHAR2(4000),   
-    PASS VARCHAR2(4000)  
-   );
-   
-   CREATE TABLE user ( 
-   name VARCHAR(4000),   
-   email VARCHAR(4000),
-   pass VARCHAR(4000)
-   );
+CREATE TABLE user (
+
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(4000),
+password VARCHAR(4000),
+email VARCHAR(4000),
+sex VARCHAR(4000),
+country VARCHAR(4000),
+
+PRIMARY KEY (id)
+);
+
+
+CREATE TABLE post (
+
+id INT NOT NULL AUTO_INCREMENT,
+topic VARCHAR(4000),
+content VARCHAR(4000),
+date DATE,
+image MEDIUMBLOB,
+
+PRIMARY KEY (id)
+)

@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -10,8 +11,14 @@ public class Post {
 	private String content;
 	private List<Comment> comments;
 	private Date date;
+	private File file;
 
-
+	public File getFile() {
+		return file;
+	}
+	public void setFile(File file) {
+		this.file = file;
+	}
 	public Date getDate() {
 		return date;
 	}
