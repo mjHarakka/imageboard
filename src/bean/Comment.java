@@ -7,9 +7,14 @@ public class Comment {
 	private int id;
 	private String content;
 	private Date date;
-	private User user;
-	private Post post;
+	private int postId;
 
+	public int getPostId() {
+		return postId;
+	}
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
 	public int getId() {
 		return id;
 	}
@@ -27,17 +32,5 @@ public class Comment {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Post getPost() {
-		return post;
-	}
-	public void setPost(Post post) {
-		this.post = post;
 	}
 }

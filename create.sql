@@ -20,3 +20,14 @@ image MEDIUMBLOB,
 
 PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE comment (
+
+id INT NOT NULL AUTO_INCREMENT,
+postid INT NOT NULL,
+content VARCHAR(4000),
+
+PRIMARY KEY (id)
+)
