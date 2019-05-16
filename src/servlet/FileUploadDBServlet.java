@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -49,10 +50,11 @@ public class FileUploadDBServlet extends HttpServlet {
             con = ConnectionProvider.getCon(); 
  
             // constructs SQL ps
-            String sql = "INSERT INTO post (topic, content, image) values (?, ?, ?)"; 
+            String sql = "INSERT INTO post (topic, content, image, time) values (?, ?, ?, ?)"; 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, topic);
 			ps.setString(2, content); 
+			ps.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
              
             if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
@@ -74,7 +76,7 @@ public class FileUploadDBServlet extends HttpServlet {
             request.setAttribute("Message", message);
              
             //forwards to the message page
-            getServletContext().getRequestDispatcher("/Message.jsp").forward(request, response);
+            response.sendRedirect("/webapp/index.jsp");
         }
     }
 }

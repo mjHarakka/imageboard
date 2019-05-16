@@ -14,28 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 import bean.ConnectionProvider;
  
 @SuppressWarnings("serial")
-@WebServlet("/Post/*")
-public class CommentServlet extends HttpServlet {
+@WebServlet("/deletepost/*")
+public class DeletePostServlet extends HttpServlet {
 	
     protected void doPost(HttpServletRequest request,
     	HttpServletResponse response) throws ServletException, IOException {
        
-    	String content = request.getParameter("commentContent");
     	String id = request.getPathInfo().substring(1);
     	
     	try {
-            // connects to the database
             Connection con = ConnectionProvider.getCon(); 
  
-            // constructs SQL ps
-            String sql = "INSERT INTO comment (postid, content) values (?,?)"; 
+            String sql = "DELETE FROM post where id = ?"; 
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, Integer.valueOf(id)); 
-			ps.setString(2, content); 
+            ps.setInt(1, Integer.valueOf(id));
              
             ps.executeUpdate();
 
-            response.sendRedirect("/webapp/index.jsp");
+            response.sendRedirect("/webapp/adminpage.jsp");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

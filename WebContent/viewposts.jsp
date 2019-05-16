@@ -10,18 +10,18 @@
 <%@page import="dao.PostDao, dao.CommentDao, bean.* , java.util.*"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
   
-<h1>Posts</h1>  
-  
 <%  
 List<Post> list = PostDao.getAllPosts();  
 request.setAttribute("list", list);
 
 %>
 
+<div class="ui equal width grid">
+
 
 <c:forEach items = "${list}" var="item">
 
-
+<div class="four wide column">
 
 <div class="ui card">
   <div class="image">
@@ -30,7 +30,7 @@ request.setAttribute("list", list);
   <div class="content">
     <a class="header">${item.getTopic()}</a>
     <div class="meta">
-      <span class="date">Posted in 2009</span>
+      <span class="date">Posted in: ${item.getTimestamp()}</span>
     </div>
     <div class="content">
     <p>${item.getContent()}</p>
@@ -57,8 +57,8 @@ request.setAttribute("list", list);
   
 
 <%
-Comment comment = (Comment)pageContext.getAttribute("item");
-List<Comment> comments = CommentDao.getAllComments(comment.getId());
+Post post = (Post)pageContext.getAttribute("item");
+List<Comment> comments = CommentDao.getAllComments(post.getId());
 request.setAttribute("comments", comments);  
 %>
 
@@ -72,13 +72,11 @@ request.setAttribute("comments", comments);
 	    <div class="content">
 	      <a class="author">Anonymous</a>
 	      <div class="metadata">
-	        <span class="date">Today at 5:42PM</span>
 	      </div>
 	      <div class="text">
 	        <p>${comment.getContent()}</p> 
 	      </div>
 	      <div class="actions">
-	        <a class="reply">Reply</a>
 	      </div>
 	    </div>
 	  </div>
@@ -87,9 +85,9 @@ request.setAttribute("comments", comments);
 </div>
   
 </div>
-
+</div>
 </c:forEach>
-
+</div>
 
  
   

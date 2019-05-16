@@ -1,6 +1,7 @@
 package bean;
 
 import java.sql.Blob;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +13,14 @@ public class Post {
 	private List<Comment> comments;
 	private Date date;
 	private Blob file;
+	private Timestamp timestamp;
 
-
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
 	public Blob getFile() {
 		return file;
 	}
